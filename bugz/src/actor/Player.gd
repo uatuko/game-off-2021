@@ -29,6 +29,12 @@ func get_velocity(
 
 	# Left/right
 	v.x = speed.x * direction.x
+	
+	# Look where you are going
+	if v.x < 0:
+		$Sprite.flip_h = true
+	elif v.x > 0:
+		$Sprite.flip_h = false
 
 	# Going downwards while pressing jump after double jump occured
 	var is_glide = can_glide and Input.is_action_pressed("jump") and v.y > 0

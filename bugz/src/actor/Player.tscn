@@ -11,7 +11,7 @@ height = 54.0
 collision_mask = 8
 script = ExtResource( 2 )
 
-[node name="walking_55x90" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -2, -45 )
 texture = ExtResource( 1 )
 
