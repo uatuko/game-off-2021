@@ -6,6 +6,12 @@ var _can_glide := false
 func _physics_process(delta):
 	var is_double_jump := !is_on_floor() and Input.is_action_just_pressed("jump") and !_can_glide
 	var direction := get_direction(is_double_jump)
+	
+	# Look where you are going
+	if direction.x < 0:
+		$Sprite.flip_h = true
+	elif direction.x > 0:
+		$Sprite.flip_h = false
 
 	_velocity = get_velocity(_velocity, direction, speed, _can_glide)
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
@@ -29,12 +35,6 @@ func get_velocity(
 
 	# Left/right
 	v.x = speed.x * direction.x
-	
-	# Look where you are going
-	if v.x < 0:
-		$Sprite.flip_h = true
-	elif v.x > 0:
-		$Sprite.flip_h = false
 
 	# Going downwards while pressing jump after double jump occured
 	var is_glide = can_glide and Input.is_action_pressed("jump") and v.y > 0
