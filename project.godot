@@ -21,6 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Bugz of Deztiny"
+run/main_scene="res://src/levels/grasslands.tscn"
 config/icon="res://icon.png"
 
 [input]
