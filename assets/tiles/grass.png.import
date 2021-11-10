@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/walking_55x90.png-70984e11abed16d535fa63a2a06ff118.stex"
+path="res://.import/grass.png-b4132c5d7806667eb15363d553aeeb45.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bugzy/walking_55x90.png"
-dest_files=[ "res://.import/walking_55x90.png-70984e11abed16d535fa63a2a06ff118.stex" ]
+source_file="res://assets/tiles/grass.png"
+dest_files=[ "res://.import/grass.png-b4132c5d7806667eb15363d553aeeb45.stex" ]
 
 [params]
 
