@@ -24,6 +24,10 @@ config/name="Bugz of Deztiny"
 run/main_scene="res://src/levels/grasslands.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://src/Global.tscn"
+
 [display]
 
 window/size/width=1280
