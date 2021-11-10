@@ -17,6 +17,8 @@ func _physics_process(delta):
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
 	_can_glide = is_double_jump or (_can_glide and !is_on_floor())
 
+	play_sound(_velocity, is_double_jump, _can_glide)
+
 func get_direction(is_double_jump: bool) -> Vector2:
 	var is_jump := is_on_floor() and Input.is_action_just_pressed("jump")
 
@@ -50,3 +52,25 @@ func get_velocity(
 		v.y += gravity * get_physics_process_delta_time()
 
 	return v
+	
+func play_sound(
+	linear_velocity: Vector2,
+	is_double_jump: bool,
+	can_glide: bool
+):
+
+	# Running
+	if is_on_floor() and linear_velocity.x != 0 and !$Sprite/run.playing:
+		$Sprite/run.play()
+	elif !is_on_floor() or linear_velocity.x == 0 and $Sprite/run.playing:
+		$Sprite/run.stop()
+
+	# Jumping
+	if is_double_jump or !is_on_floor() and Input.is_action_just_pressed("jump") and !can_glide:
+		$Sprite/jump.play()
+
+	# Gliding
+	if can_glide and Input.is_action_pressed("jump") and !$Sprite/glide.playing:
+		$Sprite/glide.play()
+	elif !can_glide and $Sprite/glide.playing:
+		$Sprite/glide.stop()
