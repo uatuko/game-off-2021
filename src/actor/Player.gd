@@ -3,10 +3,46 @@ extends Actor
 
 var _can_glide := false
 
+var direction
+var state = MOVE
+
+enum{MOVE, AUTOMOVE}
+
+
+func _on_TimerAutoMove_timeout():
+	state = MOVE
+
+
 func _physics_process(delta):
+	match state:
+		MOVE:
+			move_state(delta)
+			
+		AUTOMOVE:
+			auto_move_state()
+
+
+func auto_move():
+	$TimerAutoMove.start()
+	direction = Global.walk_direction
+	state = AUTOMOVE
+
+	# Look where you are going
+	if direction.x < 0:
+		$Sprite.flip_h = true
+	elif direction.x > 0:
+		$Sprite.flip_h = false
+
+
+func auto_move_state():
+	_velocity = Global.walk_direction * speed.x
+	_velocity = move_and_slide(_velocity)
+
+
+func move_state(delta):
 	var is_double_jump := !is_on_floor() and Input.is_action_just_pressed("jump") and !_can_glide
-	var direction := get_direction(is_double_jump)
-	
+	direction = get_direction(is_double_jump)
+
 	# Look where you are going
 	if direction.x < 0:
 		$Sprite.flip_h = true
@@ -16,6 +52,7 @@ func _physics_process(delta):
 	_velocity = get_velocity(_velocity, direction, speed, _can_glide)
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
 	_can_glide = is_double_jump or (_can_glide and !is_on_floor())
+
 
 func get_direction(is_double_jump: bool) -> Vector2:
 	var is_jump := is_on_floor() and Input.is_action_just_pressed("jump")
