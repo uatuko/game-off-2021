@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/actor/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tiles/grass.png" type="Texture" id=2]
+[ext_resource path="res://src/Entrance.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/levels/Levels.gd" type="Script" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 256, 256, 128, 256, 128, 128, 256, 128 )
@@ -149,14 +151,38 @@ points = PoolVector2Array( 256, 128, 128, 128, 128, 0, 256, 0 )
 } ]
 5/z_index = 0
 
-[node name="Node2D" type="Node2D"]
+[node name="grasslands" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 0.25, 0.25 )
 tile_set = SubResource( 7 )
 cell_size = Vector2( 256, 256 )
+collision_layer = 8
+collision_mask = 3
 format = 1
-tile_data = PoolIntArray( 458756, 0, 0, 458757, 1, 0, 458758, 2, 0, 524292, 5, 0, 524293, 4, 0, 524294, 3, 0, 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 1, 0, 655372, 1, 0, 655373, 1, 0, 655374, 1, 0, 655375, 1, 0, 655376, 1, 0, 655377, 1, 0, 655378, 1, 0, 655379, 1, 0 )
+tile_data = PoolIntArray( 458756, 0, 0, 458757, 1, 0, 458758, 2, 0, 524292, 5, 0, 524293, 4, 0, 524294, 3, 0, 524306, 4, 0, 524307, 4, 0, 524308, 4, 0, 524309, 4, 0, 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 1, 0, 655372, 1, 0, 655373, 1, 0, 655374, 1, 0, 655375, 1, 0, 655376, 1, 0, 655377, 1, 0, 655378, 1, 0, 655379, 1, 0, 655380, 1, 0, 655381, 1, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 127.339, 413.118 )
+position = Vector2( 816, 536 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 978.789
+margin_top = 490.826
+margin_right = 1121.79
+margin_bottom = 555.826
+rect_scale = Vector2( 1.79799, 1.20311 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Mysterious entrance...
+                ||
+                ||
+                  == >"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MushroomRoom" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1320, 616 )
+
+[node name="MushroomRoomPos" type="Position2D" parent="."]
+position = Vector2( 1264, 664 )
