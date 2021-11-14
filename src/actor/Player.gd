@@ -1,5 +1,8 @@
 extends Actor
 
+var _can_double_jump := true
+var _can_glide := true
+
 var _has_double_jumped := false
 
 func _physics_process(delta):
@@ -25,7 +28,7 @@ func _physics_process(delta):
 		
 	# Jump
 	if Input.is_action_just_pressed("jump"):
-		if is_on_floor or !_has_double_jumped:
+		if is_on_floor or (!_has_double_jumped and _can_double_jump):
 			_velocity.y = -jump_power
 
 			if !is_on_floor:
@@ -54,7 +57,7 @@ func _physics_process(delta):
 		_velocity.y += gravity * delta
 	
 	# Glide	
-	if _has_double_jumped and is_jump_pressed and _velocity.y > 0:
+	if _can_glide and _has_double_jumped and is_jump_pressed and _velocity.y > 0:
 		_velocity.y = clamp(_velocity.y, 0, glide_speed)
 	
 	# Move player
