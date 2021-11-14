@@ -59,6 +59,10 @@ func _physics_process(delta):
 	# Glide	
 	if _can_glide and _has_double_jumped and is_jump_pressed and _velocity.y > 0:
 		_velocity.y = clamp(_velocity.y, 0, glide_speed)
+		
+	# Limit player fall speed
+	if _velocity.y > 0:
+		_velocity.y = clamp(_velocity.y, 0, max_fall_speed)
 	
 	# Move player
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)

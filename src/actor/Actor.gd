@@ -17,6 +17,8 @@ export var air_drag := 250.0
 export var jump_power := 650.0
 # Vertical speed of the actor when gliding
 export var glide_speed := 200.0
+# Max speed the actor can fall at
+export var max_fall_speed := 1000.0
 # Rate at which the actor will be accelerated vertically downwards
 export var gravity := 2000.0
 # Rate at which the actor will be accelerated vertically downwards when jumping
