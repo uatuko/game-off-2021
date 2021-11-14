@@ -4,6 +4,7 @@ var _has_double_jumped := false
 
 func _physics_process(delta):
 	var is_on_floor = is_on_floor()
+	var is_jump_pressed = Input.is_action_pressed("jump")
 	var move_left_strength = Input.get_action_strength("move_left")
 	var move_right_strength = Input.get_action_strength("move_right")
 	
@@ -26,7 +27,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor or !_has_double_jumped:
 			_velocity.y = -jump_power
-			
+
 			if !is_on_floor:
 				_has_double_jumped = true
 	
@@ -44,10 +45,16 @@ func _physics_process(delta):
 		_velocity.x = clamp(_velocity.x + drag * delta, -run_max_speed, 0)
 	
 	# Apply gravity
-	_velocity.y += gravity * delta
+	if is_jump_pressed and _velocity.y < 0:
+		# While jumping, weaken gravity so as to enable the player to jump higher
+		# The player is jumping when they have the jump button pressed and they
+		# have not reached the peak of their jump arc
+		_velocity.y += gravity_jumping * delta
+	else:
+		_velocity.y += gravity * delta
 	
 	# Glide	
-	if _has_double_jumped and Input.is_action_pressed("jump") and _velocity.y > 0:
+	if _has_double_jumped and is_jump_pressed and _velocity.y > 0:
 		_velocity.y = clamp(_velocity.y, 0, glide_speed)
 	
 	# Move player
