@@ -1,52 +1,54 @@
 extends Actor
 
-
-var _can_glide := false
+var _has_double_jumped := false
 
 func _physics_process(delta):
-	var is_double_jump := !is_on_floor() and Input.is_action_just_pressed("jump") and !_can_glide
-	var direction := get_direction(is_double_jump)
+	var is_on_floor = is_on_floor()
+	var move_left_strength = Input.get_action_strength("move_left")
+	var move_right_strength = Input.get_action_strength("move_right")
 	
-	# Look where you are going
-	if direction.x < 0:
+	# Change player sprite direction based on player input
+	if move_left_strength > move_right_strength:
 		$Sprite.flip_h = true
-	elif direction.x > 0:
+	elif move_left_strength < move_right_strength:
 		$Sprite.flip_h = false
-
-	_velocity = get_velocity(_velocity, direction, speed, _can_glide)
-	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
-	_can_glide = is_double_jump or (_can_glide and !is_on_floor())
-
-func get_direction(is_double_jump: bool) -> Vector2:
-	var is_jump := is_on_floor() and Input.is_action_just_pressed("jump")
-
-	return Vector2(
-		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		-1.0 if is_jump or is_double_jump else 1.0
-	)
-
-func get_velocity(
-	linear_velocity: Vector2,
-	direction: Vector2,
-	speed: Vector2,
-	can_glide: bool
-) -> Vector2:
-	var v := linear_velocity
-
-	# Left/right
-	v.x = speed.x * direction.x
-
-	# Going downwards while pressing jump after double jump occured
-	var is_glide = can_glide and Input.is_action_pressed("jump") and v.y > 0
-
-	if direction.y == -1.0:
-		# Jumping
-		v.y = speed.y * direction.y
-	elif is_glide:
-		# Gliding
-		v.y = speed.y * 0.1
+	
+	# Reset double jump if on floor
+	if is_on_floor:
+		_has_double_jumped = false
+	
+	# Move left or right
+	_velocity.x -= run_acceleration * move_left_strength * delta
+	_velocity.x += run_acceleration * move_right_strength * delta
+	_velocity.x = clamp(_velocity.x, -run_max_speed, run_max_speed)
+		
+	# Jump
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor or !_has_double_jumped:
+			_velocity.y = -jump_power
+			
+			if !is_on_floor:
+				_has_double_jumped = true
+	
+	# Decide which kind of drag to use
+	var drag
+	if is_on_floor:
+		drag = floor_drag
 	else:
-		# Falling
-		v.y += gravity * get_physics_process_delta_time()
+		drag = air_drag
 
-	return v
+	# Apply horizontal drag	
+	if _velocity.x > 0:
+		_velocity.x = clamp(_velocity.x - drag * delta, 0, run_max_speed)
+	else:
+		_velocity.x = clamp(_velocity.x + drag * delta, -run_max_speed, 0)
+	
+	# Apply gravity
+	_velocity.y += gravity * delta
+	
+	# Glide	
+	if _has_double_jumped and Input.is_action_pressed("jump") and _velocity.y > 0:
+		_velocity.y = clamp(_velocity.y, 0, glide_speed)
+	
+	# Move player
+	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
