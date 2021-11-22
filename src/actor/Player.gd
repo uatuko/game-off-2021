@@ -1,5 +1,7 @@
 extends Actor
 
+class_name Player
+
 var _can_double_jump := true
 var _can_glide := true
 

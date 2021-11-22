@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/tiles/template.tres" type="TileSet" id=1]
 [ext_resource path="res://src/actor/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/levels/rocks/ice-crystals.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/levels/rocks/scene.gd" type="Script" id=4]
 
-[node name="Node2D" type="Node2D"]
+[node name="Scene" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 0.25, 0.25 )
@@ -33,3 +35,11 @@ editor_draw_drag_margin = true
 [node name="IceCrystals" parent="." instance=ExtResource( 3 )]
 position = Vector2( 470, 560 )
 z_index = -1
+
+[node name="HurtBoxes" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtBoxes"]
+position = Vector2( 0, 0.0444336 )
+polygon = PoolVector2Array( 1184.16, 639.577, 1187.56, 668.741, 1243.81, 668.539, 1243.97, 599.992, 1280.04, 607.958, 1248.04, 608.038, 1248, 672.166, 1183.92, 672.166 )
+
+[connection signal="body_entered" from="HurtBoxes" to="." method="_on_HurtBoxes_body_entered"]
