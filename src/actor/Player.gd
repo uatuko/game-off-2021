@@ -79,6 +79,11 @@ func _physics_process(delta):
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
 
 
+func bounce(multiplier = -2.0):
+	_velocity.x = 0 # stop bugzy from moving left / right
+	_velocity.y = multiplier * jump_power
+
+
 func die():
 	set_physics_process(false)
 	animation.play("die")
