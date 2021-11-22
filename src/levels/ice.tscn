@@ -14,3 +14,12 @@ tile_data = PoolIntArray( 78, -1073741823, 0, 262222, -1073741823, 0, 458790, 1,
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1203, 651 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+limit_top = 0
+limit_right = 1300
+limit_bottom = 700
+drag_margin_h_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
