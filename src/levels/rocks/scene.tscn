@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/tiles/template.tres" type="TileSet" id=1]
+[ext_resource path="res://src/actor/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/levels/rocks/ice-crystals.tscn" type="PackedScene" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 0.25, 0.25 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 256, 256 )
+format = 1
+tile_data = PoolIntArray( 20, 3, 0, 65556, 3, 0, 131092, 3, 0, 196628, 3, 0, 262164, 3, 0, 327700, 1073741824, 0, 327701, 1073741825, 0, 458773, 0, 0, 458774, 1, 0, 458775, 1, 0, 524304, 0, 0, 524305, 1, 0, 524306, 536870912, 0, 524309, 3, 0, 589840, 3, 0, 589841, 7, 0, 589842, 536870915, 0, 589843, 9, 0, 589844, 1, 0, 589845, 4, 0, 720892, 1, 0, 720893, 1, 0, 720894, 1, 0, 720895, 1, 0, 655360, 1, 0, 655361, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655368, 1, 0, 655369, 1, 0, 655370, 1, 0, 655371, 1, 0, 655372, 1, 0, 655373, 1, 0, 655374, 1, 0, 655375, 1, 0, 655376, 4, 0, 655378, 536870926, 0, 655379, 14, 0, 655380, 7, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 256, 162 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+limit_left = -256
+limit_bottom = 704
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_left = 0.25
+drag_margin_top = 0.4
+drag_margin_right = 0.25
+drag_margin_bottom = 0.15
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="IceCrystals" parent="." instance=ExtResource( 3 )]
+position = Vector2( 470, 560 )
+z_index = -1
