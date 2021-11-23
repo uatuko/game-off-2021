@@ -9,9 +9,9 @@ export var run_max_speed := 400.0
 # Rate at which the actor will reach their maximum speed
 export var run_acceleration := 3000.0
 # Rate at which the actor will be slowed on the floor
-export var floor_drag := 1500.0
+export var floor_drag := 2000.0
 # Rate at which the actor will be slowed in the air
-export var air_drag := 250.0
+export var air_drag := 300.0
 
 # Vertical speed that will be applied to the actor when they press the jump button
 export var jump_power := 650.0
