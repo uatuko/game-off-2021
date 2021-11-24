@@ -1,6 +1,6 @@
 extends Area2D
 
-export var speed = 40
+export var speed = 60
 var initial_pos_y
 var direction = 1
 var mushroom_h

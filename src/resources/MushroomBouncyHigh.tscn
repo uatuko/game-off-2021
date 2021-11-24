@@ -8,7 +8,7 @@ script/source = "extends StaticBody2D
 
 
 func _on_BouncyTop_body_entered(body):
-	body.bounce(-2.2)
+	body.bounce(-2.6)
 "
 
 [node name="MushroomBouncyHigh" type="StaticBody2D"]
