@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/levels/rocks/assets/sign-post_crystals-rocks.png" type="Texture" id=1]
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2( 0.25, 0.25 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -8.82632, 370.735, -9.1994, 79.3822, -187.891, 40.2119, -221.838, -13.8805, -152.824, -57.1544, -14.7951, -46.4104, -17.4065, -93.4893, -92.0166, -78.4183, -131.56, -231.07, -20.3909, -248.604, -21.5101, -391.482, 3.48434, -393.347, 7.58789, -250.767, 117.265, -262.705, 178.818, -253.528, 219.481, -226.892, 184.041, -156.535, 12.8106, -97.2198, 11.3184, -45.2165, 132.56, -32.533, 125.099, 108.107, 14.6758, 80.8744, 16.1681, 372.973 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
