@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/tiles/template.tres" type="TileSet" id=1]
 [ext_resource path="res://src/actor/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/levels/rocks/ice-crystals.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/levels/rocks/scene.gd" type="Script" id=4]
 [ext_resource path="res://src/levels/rocks/sign-post_crystals-rocks.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/levels/rocks/sign-post_mushrooms.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 96.4099, 5.33347 )
@@ -48,6 +49,9 @@ z_index = -1
 [node name="SignPost_CrystalsRocks" parent="." instance=ExtResource( 5 )]
 position = Vector2( 768, 560 )
 z_index = -1
+
+[node name="SignPost_Mushrooms" parent="." instance=ExtResource( 6 )]
+position = Vector2( 4300, -870 )
 
 [node name="HurtBoxes" type="Area2D" parent="."]
 
