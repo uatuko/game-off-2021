@@ -1,16 +1,26 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/levels/rocks/assets/ice-crystals.png" type="Texture" id=1]
+[ext_resource path="res://src/levels/rocks/ice-crystals.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 210.75, 304.729 )
 
 [node name="Area2D" type="Area2D"]
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2( 0.25, 0.25 )
-polygon = PoolVector2Array( 17.2708, 354.539, -146.523, 310.52, -295.984, -279.137, -248.894, -371.271, -161.878, -354.891, 7.03369, -64.1578, 138.068, -73.3712, 217.918, 19.7863, 229.178, 250.121, 287.53, 277.761, 291.625, 363.752 )
-
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 1 )
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 107.489, 19.4505 )
+scale = Vector2( 0.25, 0.25 )
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Area2D_body_exited"]
