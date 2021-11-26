@@ -1,10 +1,14 @@
 extends Actor
 
-var _can_double_jump := true
+class_name Player
+
+var _can_double_jump := false
 var _can_glide := true
 
 var _has_double_jumped := false
 var _jumping := false
+
+onready var animation = get_node("AnimatedSprite")
 
 
 func _physics_process(delta):
@@ -15,9 +19,9 @@ func _physics_process(delta):
 
 	# Change player sprite direction based on player input
 	if move_left_strength > move_right_strength:
-		$Sprite.flip_h = true
+		animation.flip_h = true
 	elif move_left_strength < move_right_strength:
-		$Sprite.flip_h = false
+		animation.flip_h = false
 
 	# Reset jump if on floor
 	if is_on_floor:
@@ -73,3 +77,9 @@ func _physics_process(delta):
 
 	# Move player
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
+
+
+func die():
+	set_physics_process(false)
+	animation.play("die")
+	yield(animation, "animation_finished")
