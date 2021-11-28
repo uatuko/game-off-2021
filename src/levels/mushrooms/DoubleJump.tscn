@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/levels/mushrooms/assets/double-jump-power-up.png" type="Texture" id=1]
+[ext_resource path="res://src/levels/mushrooms/assets/double-jump.png" type="Texture" id=1]
 [ext_resource path="res://src/levels/mushrooms/DoubleJump.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 72, 64 )
+extents = Vector2( 56, 32 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "bounce"

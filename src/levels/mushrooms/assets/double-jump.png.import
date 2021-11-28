@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/double-jump-power-up.png-9897067bd1b5eab4d2b76837e7521d93.stex"
+path="res://.import/double-jump.png-b98dd704147855d7eda8a7d4479c95a0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/levels/mushrooms/assets/double-jump-power-up.png"
-dest_files=[ "res://.import/double-jump-power-up.png-9897067bd1b5eab4d2b76837e7521d93.stex" ]
+source_file="res://src/levels/mushrooms/assets/double-jump.png"
+dest_files=[ "res://.import/double-jump.png-b98dd704147855d7eda8a7d4479c95a0.stex" ]
 
 [params]
 
