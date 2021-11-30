@@ -10,17 +10,26 @@ enum Levels {
 	Max = 3,
 }
 
+var audio: AudioStreamPlayer = null
+var danger_music = preload("res://assets/music/danger.wav")
+var relaxing_music = preload("res://assets/music/relaxing.wav")
+
 var current_level = Levels.Undefined
 var previous_level = Levels.Undefined
 
 var current_scene = null
 
-var player_has_wings = false
+var player_has_wings = false setget set_player_has_wings
 
 
 func _ready():
 	var root = get_tree().get_root()
 	current_scene = root.get_child(root.get_child_count() - 1)
+
+	audio = AudioStreamPlayer.new()
+	audio.stream = danger_music
+	audio.autoplay = true
+	add_child(audio)
 
 
 func _change_scene(path: String) -> void:
@@ -57,3 +66,14 @@ func roll_credits() -> void:
 	previous_level = Levels.Undefined
 	
 	change_scene("res://src/credits/Credits.tscn")
+
+
+func set_player_has_wings(wings: bool) -> void:
+	player_has_wings = wings
+
+	if wings == true:
+		audio.stream = relaxing_music
+	else:
+		audio.stream = danger_music
+
+	audio.play()
