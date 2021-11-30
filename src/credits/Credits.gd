@@ -19,7 +19,7 @@ var section_timer := 0.0
 
 var credits = [
 	[
-		"Bugz of Deztiny"
+		"Bugzy"
 	],[
 		"Programmers",
 		"Ashley Allen",
@@ -29,25 +29,18 @@ var credits = [
 		"Uditha (Udi) Atukorala",
 	],[
 		"Level design",
-		"Rocks",
-		"Uditha (Udi) Atukorala",
-		"",
-		"Mushrooms",
-		"Laura Necula",
-		"",
-		"Ice",
-		"Kieran Warwick",
+		"Uditha (Udi) Atukorala - Rocks",
+		"Laura Necula - Mushrooms",
+		"Kieran Warwick - Ice",
 	],[
 		"Art",
 		"Uditha (Udi) Atukorala",
 	],[
 		"Music",
 		"James Boston",
-		"https://www.jamesbostonmusic.com/"
 	],[
 		"Special thanks",
 		"Godot - Game Engine",
-		"https://godotengine.org/",
 	],[
 		"Thanks for Playing!"
 	]
@@ -106,4 +99,4 @@ func add_line():
 func end_credits():
 	if not finished:
 		finished = true
-		get_tree().change_scene("res://src/levels/mushrooms/scene.tscn")
+		get_tree().change_scene("res://src/main.tscn")
