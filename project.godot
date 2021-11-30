@@ -29,6 +29,10 @@ _global_script_class_icons={
 config/name="Bugzy"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://src/global.gd"
+
 [display]
 
 window/size/width=1280

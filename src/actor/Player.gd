@@ -2,7 +2,6 @@ extends Actor
 
 class_name Player
 
-var _can_double_jump := false
 var _can_glide := true
 
 var _has_double_jumped := false
@@ -35,7 +34,7 @@ func _physics_process(delta):
 
 	# Jump
 	if Input.is_action_just_pressed("jump"):
-		if is_on_floor or (!_has_double_jumped and _can_double_jump):
+		if is_on_floor or (!_has_double_jumped and Global.player_has_wings):
 			_velocity.y = -jump_power
 			_jumping = true
 
