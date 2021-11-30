@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/actor/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tiles/template.tres" type="TileSet" id=2]
@@ -11,7 +11,10 @@
 [ext_resource path="res://src/levels/mushrooms/SignRocksExit.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 127.648, 95.213 )
+extents = Vector2( 128.018, 90.2334 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 29.852, 128.007 )
 
 [node name="Scene" type="Node2D"]
 script = ExtResource( 3 )
@@ -246,6 +249,12 @@ position = Vector2( -5656, -2272 )
 position = Vector2( -160.997, 229.751 )
 shape = SubResource( 1 )
 
+[node name="Exit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+position = Vector2( 977.068, -479.777 )
+shape = SubResource( 2 )
+
 [node name="Exit_Ice" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit_Ice"]
@@ -254,4 +263,5 @@ shape = SubResource( 1 )
 
 [connection signal="body_entered" from="HurtBokes" to="." method="_on_HurtBokes_body_entered"]
 [connection signal="body_entered" from="Exit_Rocks" to="." method="_on_Exit_Rocks_body_entered"]
+[connection signal="body_entered" from="Exit" to="." method="_on_Exit_body_entered"]
 [connection signal="body_entered" from="Exit_Ice" to="." method="_on_Exit_Ice_body_entered"]

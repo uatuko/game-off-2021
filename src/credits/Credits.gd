@@ -99,4 +99,4 @@ func add_line():
 func end_credits():
 	if not finished:
 		finished = true
-		get_tree().change_scene("res://src/main.tscn")
+		Global.change_scene("res://src/main.tscn")

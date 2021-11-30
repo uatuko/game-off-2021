@@ -26,3 +26,8 @@ func _on_Exit_Rocks_body_entered(body):
 func _on_Exit_Ice_body_entered(body):
 	if body is Player:
 		Global.goto_level(Global.Levels.Ice)
+
+
+func _on_Exit_body_entered(body):
+	if body is Player:
+		Global.roll_credits()

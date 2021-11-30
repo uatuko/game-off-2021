@@ -50,3 +50,10 @@ func goto_level(i: int) -> void:
 
 	if i == Levels.Ice:
 		change_scene("res://src/levels/ice.tscn")
+
+
+func roll_credits() -> void:
+	current_level = Levels.Undefined
+	previous_level = Levels.Undefined
+	
+	change_scene("res://src/credits/Credits.tscn")
