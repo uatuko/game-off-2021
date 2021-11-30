@@ -1,6 +1,6 @@
 extends Control
 
-onready var start_btn = get_node("CenterContainer/BtnStart")
+onready var start_btn = get_node("CenterContainer/StartBtn")
 
 
 func _ready():
