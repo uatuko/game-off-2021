@@ -7,8 +7,8 @@ const SECTION_TIME := 2.0
 onready var line := $Container/CreditLine
 onready var titleLine := $Container/TitleLine
 
-var started := false
 var finished := false
+var started := false
 
 var curr_line := 0
 var lines := []
@@ -82,14 +82,7 @@ func _process(delta):
 				l.queue_free()
 
 	elif started:
-		finish()
-
-
-func finish():
-	print("done")
-	if not finished:
-		finished = true
-		#get_tree().change_scene("res://scenes/Start.tscn")
+		end_credits()
 
 
 func add_line():
@@ -102,10 +95,15 @@ func add_line():
 	new_line.text = section.pop_front()
 	lines.append(new_line)
 	$Container.add_child(new_line)
-	
+
 	if section.size() > 0:
 		curr_line += 1
 		section_next = false
 	else:
 		section_next = true
 
+
+func end_credits():
+	if not finished:
+		finished = true
+		get_tree().change_scene("res://src/levels/mushrooms/scene.tscn")
