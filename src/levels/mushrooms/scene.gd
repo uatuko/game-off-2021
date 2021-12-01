@@ -1,11 +1,33 @@
 extends Node2D
 
+onready var player = get_node("Player")
+
 
 func _ready():
-	$Player._can_double_jump = false
-	$Player/AnimatedSprite.flip_h = true
+	player.animation.flip_h = true
+	
+	if Global.previous_level == Global.Levels.Rocks:
+		player.position = Vector2(-326, -178)
+	elif Global.previous_level == Global.Levels.Ice:
+		player.position = Vector2(-8430, 175)
+
 
 func _on_HurtBokes_body_entered(body):
 	if body is Player:
 		yield(body.die(), "completed")
-		get_tree().reload_current_scene()
+		Global.goto_level(Global.Levels.Mushrooms)
+
+
+func _on_Exit_Rocks_body_entered(body):
+	if body is Player:
+		Global.goto_level(Global.Levels.Rocks)
+
+
+func _on_Exit_Ice_body_entered(body):
+	if body is Player:
+		Global.goto_level(Global.Levels.Ice)
+
+
+func _on_Exit_body_entered(body):
+	if body is Player:
+		Global.roll_credits()

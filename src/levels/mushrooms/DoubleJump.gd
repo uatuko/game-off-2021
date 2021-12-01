@@ -4,7 +4,7 @@ extends Area2D
 
 func _on_DoubleJump_body_entered(body):
 	if body is Player:
-		body._can_double_jump = true
+		Global.player_has_wings = true
 		$AnimationPlayer.play("bounce")
 
 

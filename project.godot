@@ -27,7 +27,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Bugzy"
+run/main_scene="res://src/main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://src/global.gd"
 
 [display]
 
